@@ -11,7 +11,10 @@ class TestHootel(object):
         URL = 'http://hotel-v3.progmasters.hu/'
         options = Options()
         options.add_experimental_option("detach", True)
+        options.add_argument("--headless")
         self.browser = webdriver.Chrome(options=options)
+        print(self.browser.get_window_size())
+        
         self.browser.get(URL)
 
     def teardown_method(self):
@@ -47,3 +50,4 @@ class TestHootel(object):
         hotel_list = self.browser.find_elements(By.XPATH, '//h4[@style="cursor: pointer"]')
         assert len(hotel_list) != 0
         assert len(hotel_list) == 10
+
